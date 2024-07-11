@@ -38,14 +38,14 @@ export class VerificationService {
 
     const connectionId = connectionData?.connection_id;
     const threadId = connectionData?.thread_id;
-    const response = await getWorkflowInstance(`${connectionId}`, 'JobApplication')
+    const response = await getWorkflowInstance(`${connectionId}`, 'Enroll')
     console.log("response", response);
     const instanceID = response?.instanceID;
     const instance = {
       instanceID: `${instanceID}`,
-      workflowID: 'JobApplication',
+      workflowID: 'Enroll',
       connectionID: `${connectionId}`,
-      currentState: 'verifyTranscript',
+      currentState: 'PathwaysEnrollment',
       stateData: { "threadId": `${threadId}` }
     }
     await updateWorkflowInstanceByID(`${instanceID}`, instance)
@@ -54,7 +54,7 @@ export class VerificationService {
 
   async handleVerifiedState(connectionData: any): Promise<void> {
     let resultOfParse: any;
-    const WORKFLOWID = 'JobApplication';
+    const WORKFLOWID = 'Enroll';
     const ACTIONID_VERFIED = 'verified';
     const connectionId = connectionData?.connection_id;
     const threadId = connectionData?.thread_id;
@@ -83,7 +83,7 @@ export class VerificationService {
   }
 
   async handleAbandonedState(connectionData: any): Promise<void> {
-    const WORKFLOWID = 'JobApplication';
+    const WORKFLOWID = 'Enroll';
     const connectionId = connectionData?.connection_id;
     const threadId = connectionData?.thread_id;
     const response = await getWorkflowInstance(`${connectionId}`, `${WORKFLOWID}`)
