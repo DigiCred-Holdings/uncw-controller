@@ -108,16 +108,20 @@
           },
           {
             "type": "title",
-            "text": ""
+            "text": "Apply"
           },
           {
             "type": "text",
-            "text": ""
+            "text": "If you are currently enrolled in high school, are an early-college high school student or a high school graduate who has not taken any college-level courses, you're considered a first-year undergraduate.."
           },
           {
             "type": "button",
             "actionID": "firstYearStudents",
             "label": "First Year Students"
+          },
+          {
+            "type": "text",
+            "text": "If you attended or are currently enrolled in community college or another university or have obtained a two-year or four-year degree from another college/ university, you're considered a transfer student"
           },
           {
             "type": "button",
@@ -194,11 +198,21 @@
           },
           {
             "type": "title",
-            "text": "Workflow - Under Construction"
+            "text": "Pathways Program"
           },
           {
             "type": "text",
-            "text": "We are working on it. Please try other options."
+            "text": "The PathWays program will provide guaranteed access for students transferring between the North Carolina Community College System and the UNC-Wilmington System."
+          },
+          {
+            "type": "button",
+            "actionID": "pathwaysEnrollment",
+            "label": "Pathways Enrollment"
+          },
+          {
+            "type": "button",
+            "actionID": "transferGuides",
+            "label": "Transfer Guides"
           },
           {
             "type": "button",
@@ -207,6 +221,284 @@
           }
         ],
         "transitions": [
+          {
+            "actionID": "pathwaysEnrollment",
+            "type": "state",
+            "value": "PathwaysEnrollment",
+            "condition": true
+          },
+          {
+            "actionID": "transferGuides",
+            "type": "state",
+            "value": "TransferGuides",
+            "condition": true
+          },
+          {
+            "actionID": "goHome",
+            "type": "workflow",
+            "value": "root-menu",
+            "condition": true
+          }
+        ],
+        "actions": [
+          {}
+        ]
+      },
+      {
+        "stateID": "PathwaysEnrollment",
+        "displayData": [
+          {
+            "type": "image",
+            "url": "https://www.registrar.psu.edu/assets/images/icons/transcripts/document-icon.jpg"
+          },
+          {
+            "type": "title",
+            "text": "Verify Student Transcript!"
+          },
+          {
+            "type": "text",
+            "text": "We will be requesting proof of your student transcript to help streamline the Application process."
+          },
+          {
+            "type": "agent",
+            "process": "verification",
+            "data": {
+              "name": "proof-request",
+              "nonce": "1234567890",
+              "version": "1.0",
+              "requested_attributes": {
+                "studentInfo": {
+                  "names": [
+                    "First",
+                    "Last",
+                    "Transcript"
+                  ],
+                  "restrictions": [
+                    {
+                      "schema_name": "US State College Transcript"
+                    }
+                  ]
+                }
+              },
+              "requested_predicates": {}
+            }
+          },
+          {
+            "type": "button",
+            "actionID": "goHome",
+            "label": "Go back to home menu"
+          }
+        ],
+        "transitions": [
+          {
+            "actionID": "goHome",
+            "type": "workflow",
+            "value": "root-menu",
+            "condition": true
+          },
+          {
+            "actionID": "verified",
+            "type": "state",
+            "value": "Application",
+            "condition": true
+          },
+          {
+            "actionID": "not-verified",
+            "type": "state",
+            "value": "notVerified",
+            "condition": true
+          }
+        ],
+        "actions": []
+      },
+      {
+        "stateID": "Application",
+        "displayData": [
+          {
+            "type": "title",
+            "text": "UNCWilmington Undergraduate Admission Application"
+          },
+          {
+            "type": "form",
+            "fields": [
+              {
+                "label": "First Name",
+                "name": "firstName",
+                "type": "text",
+                "required": true
+              },
+              {
+                "label": "Last Name",
+                "name": "lastName",
+                "type": "text",
+                "required": true
+              },
+              {
+                "label": "Date of Birth",
+                "name": "dob",
+                "type": "date",
+                "required": true
+              },
+              {
+                "label": "Email Address",
+                "name": "email",
+                "type": "email",
+                "required": true
+              },
+              {
+                "label": "Phone Number",
+                "name": "phoneNumber",
+                "type": "text",
+                "required": true
+              },
+              {
+                "label": "Home Address",
+                "name": "homeAddress",
+                "type": "text",
+                "required": true
+              },
+              {
+                "label": "Intended Major",
+                "name": "intendedMajor",
+                "type": "text",
+                "required": true
+              },
+              {
+                "label": "Extracurricular Activities",
+                "name": "extracurricularActivities",
+                "type": "text",
+                "required": false
+              },
+              {
+                "label": "Are you a U.S. citizen or US resident?",
+                "name": "isUSCitizen",
+                "type": "radio",
+                "options": [
+                  "Yes",
+                  "No"
+                ],
+                "required": true
+              }
+            ]
+          },
+          {
+            "type": "button",
+            "actionID": "selectSubmit",
+            "label": "Submit the Application"
+          },
+          {
+            "type": "button",
+            "actionID": "goHome",
+            "label": "Go back to home menu"
+          }
+        ],
+        "transitions": [
+          {
+            "actionID": "selectSubmit",
+            "type": "state",
+            "value": "SubmitApplication",
+            "condition": true
+          },
+          {
+            "actionID": "goHome",
+            "type": "workflow",
+            "value": "root-menu",
+            "condition": true
+          }
+        ],
+        "actions": []
+      },
+      {
+        "stateID": "SubmitApplication",
+        "displayData": [
+          {
+            "type": "image",
+            "url": "https://png2.cleanpng.com/sh/ff25bc133e7d591c6b4267eaef91e549/L0KzQYm3WMAzN5D7jpH0aYP2gLBuTgVvcadqiuVydImwf7e0jv9zfJkye9N7b3zsfrK0lBltdZpzfAZ4bj34frS0lBltdZpzRed3Y4ewfLFuj710fpgyjtdsdHB1PbL0kL1xdpgyjORqboPzccPsjwQufpZojNG2NXK5QrO8VMg6OJc4eaY3Mkm0Q4q9UckyPWQ4SasANUm1RYq6V75xdpg=/kisspng-university-of-north-carolina-wilmington-unc-wilmin-uncw-logo-svg-vector-amp-png-transparent-vecto-5b62b54890f3a4.2913961915331955925937.png"
+          },
+          {
+            "type": "title",
+            "text": "Thank You for Applying"
+          },
+          {
+            "type": "text",
+            "text": "Thank you for applying to the University of North Carolina Wilmington. We appreciate your interest in our undergraduate programs and look forward to reviewing your application."
+          },
+          {
+            "type": "button",
+            "actionID": "goHome",
+            "label": "Go back to home menu"
+          }
+        ],
+        "transitions": [
+          {
+            "actionID": "goHome",
+            "type": "workflow",
+            "value": "root-menu",
+            "condition": true
+          }
+        ],
+        "actions": []
+      },
+      {
+        "stateID": "notVerified",
+        "displayData": [
+          {
+            "type": "title",
+            "text": ""
+          },
+          {
+            "type": "text",
+            "text": "Sorry, Transcript Verification was not successs. Try again Later!"
+          },
+          {
+            "type": "button",
+            "actionID": "goHome",
+            "label": "Go back to home menu"
+          }
+        ],
+        "transitions": [
+          {
+            "actionID": "goHome",
+            "type": "workflow",
+            "value": "root-menu",
+            "condition": true
+          }
+        ],
+        "actions": []
+      },
+      {
+        "stateID": "TransferGuides",
+        "displayData": [
+          {
+            "type": "image",
+            "url": ""
+          },
+          {
+            "type": "title",
+            "text": "UNCW PathWays Program"
+          },
+          {
+            "type": "text",
+            "text": "The PathWays program will provide guaranteed access for students transferring between the North Carolina Community College System and the UNC-Wilmington System. It is a pathway for guaranteed transfer admission to UNCW for students completing an AA, AS, AE, AATP, ASTP, or AFA from a North Carolina Community College. Students who are currently attending a partner community college and pursuing a transferable associate degree (AA/AS/AE/AATP/ASTP/AFA) are eligible to join PathWays. Only students who are planning to apply as a transfer student are eligible for guaranteed admission. Dual-enrolled or early college students who plan to apply as first-year students are not eligible for PathWays"
+          },
+          {
+            "type": "button",
+            "actionID": "pathwaysEnrollment",
+            "label": "Pathways Enrollment"
+          },
+          {
+            "type": "button",
+            "actionID": "goHome",
+            "label": "Go back to home menu"
+          }
+        ],
+        "transitions": [
+          {
+            "actionID": "pathwaysEnrollment",
+            "type": "state",
+            "value": "PathwaysEnrollment",
+            "condition": true
+          },
           {
             "actionID": "goHome",
             "type": "workflow",
@@ -244,7 +536,7 @@
           },
           {
             "type": "title",
-            "text": "Workflow - Under Construction"
+            "text": "Under Construction"
           },
           {
             "type": "text",
