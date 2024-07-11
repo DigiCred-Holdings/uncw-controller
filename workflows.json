@@ -1,0 +1,373 @@
+[
+  {
+    "name": "Welcome Menu",
+    "workflowID": "root-menu",
+    "formatVersion": "0.0.1",
+    "initialState": "MenuDisplayed",
+    "render": [
+      {
+        "stylesID": "",
+        "type": "button",
+        "styles": {
+          "fontType": "Arial",
+          "textColor": "#000000",
+          "backgroundColor": "#ffffff"
+        }
+      }
+    ],
+    "states": [
+      {
+        "stateID": "MenuDisplayed",
+        "displayData": [
+          {
+            "type": "image",
+            "url": "https://png2.cleanpng.com/sh/ff25bc133e7d591c6b4267eaef91e549/L0KzQYm3WMAzN5D7jpH0aYP2gLBuTgVvcadqiuVydImwf7e0jv9zfJkye9N7b3zsfrK0lBltdZpzfAZ4bj34frS0lBltdZpzRed3Y4ewfLFuj710fpgyjtdsdHB1PbL0kL1xdpgyjORqboPzccPsjwQufpZojNG2NXK5QrO8VMg6OJc4eaY3Mkm0Q4q9UckyPWQ4SasANUm1RYq6V75xdpg=/kisspng-university-of-north-carolina-wilmington-unc-wilmin-uncw-logo-svg-vector-amp-png-transparent-vecto-5b62b54890f3a4.2913961915331955925937.png"
+          },
+          {
+            "type": "title",
+            "text": "Welcome to UNCW!"
+          },
+          {
+            "type": "text",
+            "text": "We are here to support you every step of the way and can't wait to connect with you. If you aren't sure where to start, consider checking out our action menu or call one of our team members."
+          },
+          {
+            "type": "button",
+            "actionID": "selectEnroll",
+            "label": "Enroll"
+          },
+          {
+            "type": "button",
+            "actionID": "selectRequestTranscript",
+            "label": "Request a Transcript"
+          },
+          {
+            "type": "button",
+            "actionID": "selectFAFSA",
+            "label": "FAFSA"
+          },
+          {
+            "type": "button",
+            "actionID": "selectAccountRegistration",
+            "label": "Account Registration"
+          }
+        ],
+        "transitions": [
+          {
+            "actionID": "selectEnroll",
+            "type": "workflow",
+            "value": "Enroll",
+            "condition": "userType === 'new'"
+          },
+          {
+            "actionID": "selectRequestTranscript",
+            "type": "workflow",
+            "value": "RequestTranscript",
+            "condition": ""
+          },
+          {
+            "actionID": "selectFAFSA",
+            "type": "workflow",
+            "value": "FAFSA",
+            "condition": "needsFinancialAid === true"
+          },
+          {
+            "actionID": "selectAccountRegistration",
+            "type": "workflow",
+            "value": "AccountRegistration",
+            "condition": ""
+          }
+        ],
+        "actions": [
+          {}
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Enroll",
+    "workflowID": "Enroll",
+    "formatVersion": "0.0.1",
+    "initialState": "enrollMenu",
+    "render": [
+      {
+        "styles": {
+          "textColor": "#000000",
+          "backgroundColor": "#ffffff",
+          "fontType": "Arial"
+        }
+      }
+    ],
+    "states": [
+      {
+        "stateID": "enrollMenu",
+        "displayData": [
+          {
+            "type": "image",
+            "url": "https://png2.cleanpng.com/sh/ff25bc133e7d591c6b4267eaef91e549/L0KzQYm3WMAzN5D7jpH0aYP2gLBuTgVvcadqiuVydImwf7e0jv9zfJkye9N7b3zsfrK0lBltdZpzfAZ4bj34frS0lBltdZpzRed3Y4ewfLFuj710fpgyjtdsdHB1PbL0kL1xdpgyjORqboPzccPsjwQufpZojNG2NXK5QrO8VMg6OJc4eaY3Mkm0Q4q9UckyPWQ4SasANUm1RYq6V75xdpg=/kisspng-university-of-north-carolina-wilmington-unc-wilmin-uncw-logo-svg-vector-amp-png-transparent-vecto-5b62b54890f3a4.2913961915331955925937.png"
+          },
+          {
+            "type": "title",
+            "text": ""
+          },
+          {
+            "type": "text",
+            "text": ""
+          },
+          {
+            "type": "button",
+            "actionID": "firstYearStudents",
+            "label": "First Year Students"
+          },
+          {
+            "type": "button",
+            "actionID": "transferStudents",
+            "label": "Transfer Students"
+          },
+          {
+            "type": "button",
+            "actionID": "goHome",
+            "label": "Go back to home menu"
+          }
+        ],
+        "transitions": [
+          {
+            "actionID": "firstYearStudents",
+            "type": "state",
+            "value": "FirstYearStudents",
+            "condition": true
+          },
+          {
+            "actionID": "transferStudents",
+            "type": "state",
+            "value": "TransferStudents",
+            "condition": true
+          },
+          {
+            "actionID": "goHome",
+            "type": "workflow",
+            "value": "root-menu",
+            "condition": true
+          }
+        ],
+        "actions": []
+      },
+      {
+        "stateID": "FirstYearStudents",
+        "displayData": [
+          {
+            "type": "image",
+            "url": ""
+          },
+          {
+            "type": "title",
+            "text": "Workflow - Under Construction"
+          },
+          {
+            "type": "text",
+            "text": "We are working on it. Please try other options."
+          },
+          {
+            "type": "button",
+            "actionID": "goHome",
+            "label": "Go back to home menu"
+          }
+        ],
+        "transitions": [
+          {
+            "actionID": "goHome",
+            "type": "workflow",
+            "value": "root-menu",
+            "condition": true
+          }
+        ],
+        "actions": [
+          {}
+        ]
+      },
+      {
+        "stateID": "TransferStudents",
+        "displayData": [
+          {
+            "type": "image",
+            "url": ""
+          },
+          {
+            "type": "title",
+            "text": "Workflow - Under Construction"
+          },
+          {
+            "type": "text",
+            "text": "We are working on it. Please try other options."
+          },
+          {
+            "type": "button",
+            "actionID": "goHome",
+            "label": "Go back to home menu"
+          }
+        ],
+        "transitions": [
+          {
+            "actionID": "goHome",
+            "type": "workflow",
+            "value": "root-menu",
+            "condition": true
+          }
+        ],
+        "actions": [
+          {}
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Request Transcript",
+    "workflowID": "RequestTranscript",
+    "formatVersion": "0.0.1",
+    "initialState": "UnderConstruction",
+    "render": [
+      {
+        "styles": {
+          "textColor": "#000000",
+          "backgroundColor": "#ffffff",
+          "fontType": "Arial"
+        }
+      }
+    ],
+    "states": [
+      {
+        "stateID": "UnderConstruction",
+        "displayData": [
+          {
+            "type": "image",
+            "url": ""
+          },
+          {
+            "type": "title",
+            "text": "Workflow - Under Construction"
+          },
+          {
+            "type": "text",
+            "text": "We are working on it. Please try other options."
+          },
+          {
+            "type": "button",
+            "actionID": "goHome",
+            "label": "Go back to home menu"
+          }
+        ],
+        "transitions": [
+          {
+            "actionID": "goHome",
+            "type": "workflow",
+            "value": "root-menu",
+            "condition": true
+          }
+        ],
+        "actions": [
+          {}
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Request FAFSA",
+    "workflowID": "FAFSA",
+    "formatVersion": "0.0.1",
+    "initialState": "UnderConstruction",
+    "render": [
+      {
+        "styles": {
+          "textColor": "#000000",
+          "backgroundColor": "#ffffff",
+          "fontType": "Arial"
+        }
+      }
+    ],
+    "states": [
+      {
+        "stateID": "UnderConstruction",
+        "displayData": [
+          {
+            "type": "image",
+            "url": ""
+          },
+          {
+            "type": "title",
+            "text": "Workflow - Under Construction"
+          },
+          {
+            "type": "text",
+            "text": "We are working on it. Please try other options."
+          },
+          {
+            "type": "button",
+            "actionID": "goHome",
+            "label": "Go back to home menu"
+          }
+        ],
+        "transitions": [
+          {
+            "actionID": "goHome",
+            "type": "workflow",
+            "value": "root-menu",
+            "condition": true
+          }
+        ],
+        "actions": [
+          {}
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Account Registration",
+    "workflowID": "AccountRegistration",
+    "formatVersion": "0.0.1",
+    "initialState": "UnderConstruction",
+    "render": [
+      {
+        "styles": {
+          "textColor": "#000000",
+          "backgroundColor": "#ffffff",
+          "fontType": "Arial"
+        }
+      }
+    ],
+    "states": [
+      {
+        "stateID": "UnderConstruction",
+        "displayData": [
+          {
+            "type": "image",
+            "url": ""
+          },
+          {
+            "type": "title",
+            "text": "Workflow - Under Construction"
+          },
+          {
+            "type": "text",
+            "text": "We are working on it. Please try other options."
+          },
+          {
+            "type": "button",
+            "actionID": "goHome",
+            "label": "Go back to home menu"
+          }
+        ],
+        "transitions": [
+          {
+            "actionID": "goHome",
+            "type": "workflow",
+            "value": "root-menu",
+            "condition": true
+          }
+        ],
+        "actions": [
+          {}
+        ]
+      }
+    ]
+  }
+]
